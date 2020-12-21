@@ -8,41 +8,37 @@ import Notification from "./Notification/Notification";
 export default function App() {
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
-  const [bad, setbad] = useState(0);
-
-  // const handleGoodIncrement = () => {
-  //   setGood((prevState) => prevState + 1);
-  // };
-  // const handleNeutralIncrement = () => {
-  //   setGood((prevState) => prevState + 1);
-  // };
-  // const handleBadIncrement = () => {
-  //   setGood((prevState) => prevState + 1);
-  // };
+  const [bad, setBad] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [positive, setPositive] = useState(0);
 
   const increment = (e) => {
     switch (e.target.name) {
       case "good":
         setGood((prevState) => prevState + 1);
+        setTotal((prevState)=>prevState + 1);
         break;
+
       case "neutral":
         setNeutral((prevState) => prevState + 1);
+        setTotal((prevState)=>prevState + 1);
         break;
-      case "bad":
-        setbad((prevState) => prevState + 1);
+
+        case "bad":
+        setBad((prevState) => prevState + 1);
+        setTotal((prevState)=>prevState + 1);
         break;
-      default:
+
+        default:
         return;
     }
   };
 
   useEffect(() => {
-    return good + neutral + bad;
-  }, [good, neutral, bad]);
+    setPositive(Math.round((good / total) * 100)) 
+  }, [good, total]);
 
-  const total = good + neutral + bad;
-  const keys = Object.keys[(good, neutral, bad)];
-  console.log(total);
+  const keys = ["good", "neutral", "bad"];
 
   return (
     <>
@@ -56,8 +52,8 @@ export default function App() {
             good={good}
             neutral={neutral}
             bad={bad}
-            total={useEffect}
-            // positivePercentage={countPositiveFeedbackPercentage()}
+            total={total}
+            positivePercentage={ positive }
           />
         ) : (
           <Notification title={"No feedback given"} />
