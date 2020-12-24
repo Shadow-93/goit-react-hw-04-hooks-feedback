@@ -16,26 +16,26 @@ export default function App() {
     switch (e.target.name) {
       case "good":
         setGood((prevState) => prevState + 1);
-        setTotal((prevState)=>prevState + 1);
+        setTotal((prevState) => prevState + 1);
         break;
 
       case "neutral":
         setNeutral((prevState) => prevState + 1);
-        setTotal((prevState)=>prevState + 1);
+        setTotal((prevState) => prevState + 1);
         break;
 
-        case "bad":
+      case "bad":
         setBad((prevState) => prevState + 1);
-        setTotal((prevState)=>prevState + 1);
+        setTotal((prevState) => prevState + 1);
         break;
 
-        default:
+      default:
         return;
     }
   };
 
   useEffect(() => {
-    setPositive(Math.round((good / total) * 100)) 
+    setPositive(Math.round((good / total) * 100));
   }, [good, total]);
 
   const keys = ["good", "neutral", "bad"];
@@ -53,7 +53,7 @@ export default function App() {
             neutral={neutral}
             bad={bad}
             total={total}
-            positivePercentage={ positive }
+            positivePercentage={positive}
           />
         ) : (
           <Notification title={"No feedback given"} />
