@@ -12,21 +12,20 @@ export default function App() {
   const [total, setTotal] = useState(0);
   const [positive, setPositive] = useState(0);
 
+  const keys = ["good", "neutral", "bad"];
+
   const increment = (e) => {
     switch (e.target.name) {
       case "good":
         setGood((prevState) => prevState + 1);
-        setTotal((prevState) => prevState + 1);
         break;
 
       case "neutral":
         setNeutral((prevState) => prevState + 1);
-        setTotal((prevState) => prevState + 1);
         break;
 
       case "bad":
         setBad((prevState) => prevState + 1);
-        setTotal((prevState) => prevState + 1);
         break;
 
       default:
@@ -36,9 +35,8 @@ export default function App() {
 
   useEffect(() => {
     setPositive(Math.round((good / total) * 100));
+    setTotal((prevState) => prevState + 1);
   }, [good, total]);
-
-  const keys = ["good", "neutral", "bad"];
 
   return (
     <>
