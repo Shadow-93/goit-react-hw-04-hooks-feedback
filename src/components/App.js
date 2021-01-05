@@ -18,14 +18,17 @@ export default function App() {
     switch (e.target.name) {
       case "good":
         setGood((prevState) => prevState + 1);
+        setTotal((prevState) => prevState + 1);
         break;
 
       case "neutral":
         setNeutral((prevState) => prevState + 1);
+        setTotal((prevState) => prevState + 1);
         break;
 
       case "bad":
         setBad((prevState) => prevState + 1);
+        setTotal((prevState) => prevState + 1);
         break;
 
       default:
@@ -35,7 +38,6 @@ export default function App() {
 
   useEffect(() => {
     setPositive(Math.round((good / total) * 100));
-    setTotal((prevState) => prevState + 1);
   }, [good, total]);
 
   return (
